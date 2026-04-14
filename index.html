@@ -703,30 +703,36 @@
     <span class="footer-byline">a CloudForecast product</span>
   </div>
   <div class="footer-copy">
-    <a href="mailto:founders@earlysigns.io">founders@earlysigns.io</a>
-    &nbsp;·&nbsp; Made in Chicago, San Diego & Peru
-    &nbsp;·&nbsp; &copy; 2026 CloudForecast Inc. All Rights Reserved
+    <span id="fe" style="cursor:pointer; text-decoration:underline;"></span>
+    &nbsp;&middot;&nbsp; Made in Chicago, San Diego &amp; Peru
+    &nbsp;&middot;&nbsp; &copy; 2026 CloudForecast Inc. All Rights Reserved
   </div>
 </footer>
 
 <script>
-  (function () {
-    function initFaq() {
-      var items = document.querySelectorAll('.faq-item');
-      items.forEach(function (item) {
-        item.addEventListener('click', function () {
-          var isOpen = this.classList.contains('open');
-          items.forEach(function (i) { i.classList.remove('open'); });
-          if (!isOpen) { this.classList.add('open'); }
-        });
+(function () {
+  var u = ['founders', 'earlysigns.io'].join('@');
+  var git = document.getElementById('git');
+  if (git) { git.onclick = function(e){ e.preventDefault(); window.location.href = 'mailto:' + u; }; }
+  var el = document.getElementById('fe');
+  if (el) { el.textContent = u; el.onclick = function(){ window.location.href = 'mailto:' + u; }; }
+
+  function initFaq() {
+    var items = document.querySelectorAll('.faq-item');
+    items.forEach(function (item) {
+      item.addEventListener('click', function () {
+        var isOpen = this.classList.contains('open');
+        items.forEach(function (i) { i.classList.remove('open'); });
+        if (!isOpen) { this.classList.add('open'); }
       });
-    }
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initFaq);
-    } else {
-      initFaq();
-    }
-  })();
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initFaq);
+  } else {
+    initFaq();
+  }
+})();
 </script>
 
 </body>
